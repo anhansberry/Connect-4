@@ -149,48 +149,4 @@ public class GameManager
 		}
 	}
 	
-	public void playerTurn(int column) // called when human player chooses a move location, has both players take their turns
-	{
-		player1.setNextMove(column);
-		// calculate effects of human player's move
-		updateGameState();
-		isHumanPlayerTurn = false;
-	}
-	public void AITurn()
-	{
-		player2.makeMove(gameBoard);
-		// calculate effects of AI player's move
-		updateGameState();
-		isHumanPlayerTurn = true;
-	}
-	public boolean isValidMove(int column) // determines if a move can be made by checking whether the topmost slot is open
-	{
-		if (column > 6)
-		{
-			return false;
-		}
-		if(gameBoard[column][5] == 0)
-		{
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean isFinished()
-	{
-		return isFinished;
-	}
-	
-	public int getGameState() //returns 0 for no, 1 for player1 victory, 2 for player2 victory, and 3 for tie
-	{
-		return gameState;
-	}
-	public Player getPlayer1()
-	{
-		return player1;
-	}
-	public Player getPlayer2()
-	{
-		return player2;
-	}
 }

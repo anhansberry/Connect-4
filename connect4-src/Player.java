@@ -34,4 +34,9 @@ public class Player
 	{
 		return _name;
 	}
+
+	public String toString(){
+		return "Name: "+ this._name+ "\nMove: "+ this._move + "\nNumber: "+ this._number; // added to string
+	}
+
 }

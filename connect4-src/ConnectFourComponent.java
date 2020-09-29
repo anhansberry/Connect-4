@@ -7,7 +7,7 @@ import java.awt.geom.Line2D;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
-
+// sets up visual effects of code..
 public class ConnectFourComponent extends JComponent
 {
 	GameManager gameManager;

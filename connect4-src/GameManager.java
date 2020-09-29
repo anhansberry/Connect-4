@@ -7,8 +7,14 @@ public class GameManager
 	private boolean isFinished;
 	int gameState;
 	private Player player2; // player2 is an AIPlayer but is held as a Player for polymorphism
+
+
+
+
+
 	public GameManager(String playerName, int firstTurn)
 	{
+		// Want to turn this into it's own class but not sure how to
 		player1 = new Player(playerName, 1); // a player1 piece is represented by "1" in the array
 		// set AI class being used 
 		player2 = new MinimaxPlayer("AI", 2); // a player 2 piece is represented by "2" in the array
@@ -27,15 +33,17 @@ public class GameManager
 			AITurn();
 		}
 	}
+
+
+
 	public boolean isHumanPlayerTurn()
 	{
+
 		return isHumanPlayerTurn;
 	}
 	
-	public Player currentPlayer()
-	{
-		if (isHumanPlayerTurn())
-		{
+	public Player currentPlayer() {
+		isHumanPlayerTurn(){ // repetative if else statement
 			return player1;
 		}
 		else
@@ -43,6 +51,8 @@ public class GameManager
 			return player2;
 		}
 	}
+
+
 	public int[][] getGameBoard()
 	{
 		return gameBoard;
@@ -71,8 +81,13 @@ public class GameManager
 				i++;
 			}
 		}
-		// checks if board is filled
-		boolean isFilled = true;
+
+		isFinished = isFilled();
+
+		whoWon();
+	}
+
+	public boolean isFilled(){
 		for(int i =0; i <= 6; i++)
 		{
 			if(gameBoard[i][5]== 0)
@@ -83,71 +98,78 @@ public class GameManager
 		if(isFilled)
 		{
 			gameState = 3;
-			isFinished = true;
+			isFilled() = true;
 		}
-		// checks if player 1 or player2 won
+		return isFilled()
+
+	}
+
+
+	public boolean whoWon{
+	// checks if player 1 or player2 won
 		for(int i = 0; i < gameBoard.length; i++)
+	{
+		for(int j = 0; j < gameBoard[0].length; j++)
 		{
-			for(int j = 0; j < gameBoard[0].length; j++)
+			if(gameBoard[i][j] != 0)
 			{
-				if(gameBoard[i][j] != 0)
+				int diagonal = 0;
+				int vertical = 0;
+				int horizontal = 0;
+				int diagonal2 =0;
+				for(int t = 0; t < 4; t++)
 				{
-					int diagonal = 0;
-					int vertical = 0;
-					int horizontal = 0;
-					int diagonal2 =0;
-					for(int t = 0; t < 4; t++)
+
+					// could definitally be simplified and broken down to make more sense.
+					if(j <= 2)
 					{
-						
-						if(j <= 2)
+						if(gameBoard[i][j+t] == gameBoard[i][j])
 						{
-							if(gameBoard[i][j+t] == gameBoard[i][j])
-							{
-								vertical += 1;
-							}
+							vertical += 1;
 						}
-						
-						if(i <= 3)
-						{
-							if(gameBoard[i + t][j] == gameBoard[i][j])
-							{
-								horizontal += 1;
-							}
-						}
-						
-						if(j <=2 && i <= 3)
-						{
-							if(gameBoard[i+t][j+t] == gameBoard[i][j])
-							{
-								diagonal += 1;
-							}
-						}	
-						// Changed the condition 
-						if(j >= 3  && i <= 3)
-						{
-							if(gameBoard[i+t][j-t] == gameBoard[i][j]) // changed the incrementation
-							{
-								diagonal2 += 1;
-							}
-						}	
 					}
-					if(vertical == 4 || horizontal == 4 || diagonal == 4 || diagonal2 == 4)
+
+					if(i <= 3)
 					{
-						if(isHumanPlayerTurn())
+						if(gameBoard[i + t][j] == gameBoard[i][j])
 						{
-							gameState = 1;
+							horizontal += 1;
 						}
-						else
+					}
+
+					if(j <=2 && i <= 3)
+					{
+						if(gameBoard[i+t][j+t] == gameBoard[i][j])
 						{
-							gameState =2;
+							diagonal += 1;
 						}
-						isFinished = true;
+					}
+					// Changed the condition
+					if(j >= 3  && i <= 3)
+					{
+						if(gameBoard[i+t][j-t] == gameBoard[i][j]) // changed the incrementation
+						{
+							diagonal2 += 1;
+						}
 					}
 				}
+				if(vertical == 4 || horizontal == 4 || diagonal == 4 || diagonal2 == 4)
+				{
+					if(isHumanPlayerTurn())
+					{
+						gameState = 1;
+					}
+					else
+					{
+						gameState =2;
+					}
+					isFinished = true;
+				}
 			}
-
 		}
+
 	}
+}
 	
 	public void playerTurn(int column) // called when human player chooses a move location, has both players take their turns
 	{

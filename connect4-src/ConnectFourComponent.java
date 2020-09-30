@@ -49,20 +49,19 @@ public class ConnectFourComponent extends JComponent
 					}
 			}
 		}
-		if(!gameManager.isFinished())
-		{
-			if(gameManager.currentPlayer().getNumber() == 1)
-			{
-				g2.setColor(Color.RED);
-			}
-			else
-			{
-				g2.setColor(Color.BLACK);
-			}
-			int id = gameManager.currentPlayer().getNumber();
-			String name = gameManager.currentPlayer().getName();
-			g2.drawString("Player " + id + ": " + name, 5, 15);
+
+	public void checkGameManager(){
+		int id = gameManager.currentPlayer().getNumber();
+		if(!gameManager.isFinished() && id == 1){
+			g2.setColor(Color.RED);
 		}
+		else if (!gameManager.isFinished() && id == 2) {
+			g2.setColor(Color.BLACK);
+		}
+			
+		String name = gameManager.currentPlayer().getName();
+		g2.drawString("Player " + id + ": " + name, 5, 15);
+		
 		else
 		{
 			if(gameManager.getGameState()==1)
@@ -81,8 +80,11 @@ public class ConnectFourComponent extends JComponent
 				g2.drawString("Tie Game", 5, 15);
 			}
 		}
-		
+
 	}
+		
+		
+
 		
 	
 	public void reset()

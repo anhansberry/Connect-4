@@ -86,6 +86,13 @@ public class MinimaxPlayer extends AIPlayer
 		return myMove;
 	}
 
+
+
+
+
+
+	public int checkRow(boolean isAITurn)
+
 	public int checkVictory(boolean isAITurn)
 	{
 		// checks if board is filled

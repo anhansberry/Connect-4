@@ -10,7 +10,7 @@ public class ConnectFourViewer
 	public static void main(String args[])
 	{
 		final JFrame frame = new JFrame();
-		frame.setSize(641,590);
+		frame.setSize(650,610);
 		frame.setTitle("Connect Four");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBackground(Color.WHITE);

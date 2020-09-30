@@ -12,10 +12,7 @@ public class Player
 		_number = number;
 		_move = -1;
 	}
-	public void makeMove(int[][] gameBoard)
-	{
-		// this is where an AI algorithm would be in AIPlayer 
-	}
+	
 	public void setNextMove(int columnNumber)
 	{
 		_move = columnNumber;

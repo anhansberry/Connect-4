@@ -109,7 +109,7 @@ public class GameManager
 						
 						if(i <= 3)
 						{
-							if(gameBoard[i + t][j] == gameBoard[i][j])
+							if(gameBoard[i+t][j] == gameBoard[i][j])
 							{
 								horizontal += 1;
 							}
@@ -154,14 +154,16 @@ public class GameManager
 		player1.setNextMove(column);
 		// calculate effects of human player's move
 		updateGameState();
-		isHumanPlayerTurn = false;
+		// isHumanPlayerTurn = false;
+		//it doest make sense to have this here because the funcion returns void
 	}
 	public void AITurn()
 	{
 		player2.makeMove(gameBoard);
 		// calculate effects of AI player's move
 		updateGameState();
-		isHumanPlayerTurn = true;
+		// isHumanPlayerTurn = true;
+		//It doest make sense to have this here because the funcion returns void
 	}
 	public boolean isValidMove(int column) // determines if a move can be made by checking whether the topmost slot is open
 	{

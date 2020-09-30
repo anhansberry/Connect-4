@@ -19,7 +19,6 @@ public class Player
 	public void setNextMove(int columnNumber)
 	{
 		_move = columnNumber;
-
 	}
 	public int getMove()
 	{

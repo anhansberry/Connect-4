@@ -7,7 +7,6 @@ public class MinimaxPlayer extends AIPlayer
 	private int[][] tempBoard;
 	public static int PLAYER_WIN = 10000000; // not the max and min values so that closer values can be considered better
 	public static int OPPONENT_WIN = -10000000;
-	public static int DRAW = 0;
 	public static int CONTINUE = 9999; // some constant. value doesn't matter
 
 	public MinimaxPlayer(String name, int number) 
@@ -92,9 +91,9 @@ public class MinimaxPlayer extends AIPlayer
 		boolean isFilled = true;
 		for(int i =0; i <= 6; i++)
 		{
-			if(tempBoard[i][5]== 0)
-			{
+			if (tempBoard[i][5] == 0) {
 				isFilled = false;
+				break;
 			}
 		}
 		if(isFilled)
@@ -179,10 +178,7 @@ public class MinimaxPlayer extends AIPlayer
 		int[][] newBoard = new int[oldBoard.length][oldBoard[0].length];
 		for(int i = 0; i < newBoard.length; i++)
 		{
-			for(int j = 0; j < newBoard[0].length; j++)
-			{
-				newBoard[i][j] = oldBoard[i][j];
-			}
+			System.arraycopy(oldBoard[i], 0, newBoard[i], 0, newBoard[0].length);
 		}
 		return newBoard;
 	}

@@ -75,9 +75,9 @@ public class GameManager
 		boolean isFilled = true;
 		for(int i =0; i <= 6; i++)
 		{
-			if(gameBoard[i][5]== 0)
-			{
+			if (gameBoard[i][5] == 0) {
 				isFilled = false;
+				break;
 			}
 		}
 		if(isFilled)
@@ -158,6 +158,7 @@ public class GameManager
 	}
 	public void AITurn()
 	{
+
 		player2.makeMove(gameBoard);
 		// calculate effects of AI player's move
 		updateGameState();
@@ -169,11 +170,7 @@ public class GameManager
 		{
 			return false;
 		}
-		if(gameBoard[column][5] == 0)
-		{
-			return true;
-		}
-		return false;
+		return gameBoard[column][5] == 0;
 	}
 	
 	public boolean isFinished()

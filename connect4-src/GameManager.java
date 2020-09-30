@@ -75,9 +75,9 @@ public class GameManager
 		boolean isFilled = true;
 		for(int i =0; i <= 6; i++)
 		{
-			if(gameBoard[i][5]== 0)
-			{
+			if (gameBoard[i][5] == 0) {
 				isFilled = false;
+				break;
 			}
 		}
 		if(isFilled)

@@ -91,9 +91,9 @@ public class MinimaxPlayer extends AIPlayer
 		boolean isFilled = true;
 		for(int i =0; i <= 6; i++)
 		{
-			if(tempBoard[i][5]== 0)
-			{
+			if (tempBoard[i][5] == 0) {
 				isFilled = false;
+				break;
 			}
 		}
 		if(isFilled)
@@ -178,10 +178,7 @@ public class MinimaxPlayer extends AIPlayer
 		int[][] newBoard = new int[oldBoard.length][oldBoard[0].length];
 		for(int i = 0; i < newBoard.length; i++)
 		{
-			for(int j = 0; j < newBoard[0].length; j++)
-			{
-				newBoard[i][j] = oldBoard[i][j];
-			}
+			System.arraycopy(oldBoard[i], 0, newBoard[i], 0, newBoard[0].length);
 		}
 		return newBoard;
 	}

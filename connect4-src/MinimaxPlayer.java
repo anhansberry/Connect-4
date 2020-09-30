@@ -7,7 +7,6 @@ public class MinimaxPlayer extends AIPlayer
 	private int[][] tempBoard;
 	public static int PLAYER_WIN = 10000000; // not the max and min values so that closer values can be considered better
 	public static int OPPONENT_WIN = -10000000;
-	public static int DRAW = 0;
 	public static int CONTINUE = 9999; // some constant. value doesn't matter
 
 	public MinimaxPlayer(String name, int number) 

@@ -10,7 +10,6 @@ public class GameManager
 	public GameManager(String playerName, int firstTurn)
 	{
 		player1 = new Player(playerName, 1); // a player1 piece is represented by "1" in the array
-		// set AI class being used 
 		player2 = new MinimaxPlayer("AI", 2); // a player 2 piece is represented by "2" in the array
 		//player2 = new AdvancedAIPlayer("AI",2); 
 		//player2 = new AIPlayer("AI",2);
@@ -47,44 +46,22 @@ public class GameManager
 	{
 		return gameBoard;
 	}
-	
-	public void updateGameState() // places the move at the proper place
-	{
-		Player currentPlayer = currentPlayer();
-		int column = currentPlayer.getMove();
-		// iterates through the column to find the right spot for the piece
-		if(column != -1)
-		{
-			boolean flag = true;
-			int i = 0;
-			while (flag)
-			{
-				if (gameBoard[column][i] == 0) // checks if empty
-				{
-					gameBoard[column][i] = currentPlayer.getNumber();
-					flag = false;
-				}
-				if (i >= 5) // makes sure to end if the top of the column is reached
-				{
-					flag = false;
-				}
-				i++;
-			}
-		}
+
+	//Check if board filled
+	public boolean isBoardFilled(){
 		// checks if board is filled
-		boolean isFilled = true;
 		for(int i =0; i <= 6; i++)
 		{
 			if(gameBoard[i][5]== 0)
 			{
-				isFilled = false;
+				return(false);
 			}
 		}
-		if(isFilled)
-		{
-			gameState = 3;
-			isFinished = true;
-		}
+		return(true);
+		
+	}
+
+	public boolean isWinner(){
 		// checks if player 1 or player2 won
 		for(int i = 0; i < gameBoard.length; i++)
 		{
@@ -141,12 +118,44 @@ public class GameManager
 						{
 							gameState =2;
 						}
-						isFinished = true;
+						return true;
 					}
 				}
 			}
 
 		}
+		return false;
+	}
+	
+	public void updateGameState() // places the move at the proper place
+	{
+		Player currentPlayer = currentPlayer();
+		int column = currentPlayer.getMove();
+		// iterates through the column to find the right spot for the piece
+		if(column != -1)
+		{
+			boolean flag = true;
+			int i = 0;
+			while (flag)
+			{
+				if (gameBoard[column][i] == 0) // checks if empty
+				{
+					gameBoard[column][i] = currentPlayer.getNumber();
+					flag = false;
+				}
+				if (i >= 5) // makes sure to end if the top of the column is reached
+				{
+					flag = false;
+				}
+				i++;
+			}
+		}
+		if(isBoardFilled() || isWinner())
+		{
+			gameState = 3;
+			isFinished = true;
+		}
+		
 	}
 	
 	public void playerTurn(int column) // called when human player chooses a move location, has both players take their turns

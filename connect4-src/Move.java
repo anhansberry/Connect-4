@@ -1,26 +1,26 @@
 
 public class Move 
 {
-	private int location;
-	private int heuristic;
+	private int currentLocation;
+	private int currentHeuristic;
 	public Move(int location)
 	{
-		location = location;
+		currentLocation = location;
 	}
 	public int getLocation()
 	{
-		return location;
+		return currentLocation;
 	}
 	public int getHeuristic()
 	{
-		return heuristic;
+		return currentHeuristic;
 	}
 	public void setHeuristic(int heur)
 	{
-		heuristic = heuristic;
+		currentHeuristic = heuristic;
 	}
 	public void setLocation(int locat)
 	{
-		location = location;
+		currentLocation = location;
 	}
 }

@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 
 public class ConnectFourViewer 
 {
-	public static void main(String args[])
+	public static void main(String[] args)
 	{
 		final JFrame frame = new JFrame();
 		frame.setSize(641,590);
